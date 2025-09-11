@@ -1,0 +1,6 @@
+@mateuscerqueira.ToDoApp.WebApi_HostAddress = http://localhost:5084
+
+GET {{mateuscerqueira.ToDoApp.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
