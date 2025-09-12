@@ -2,5 +2,6 @@
 
 public interface ITokenService
 {
-    public string GenerateToken(Guid userId, string firstName, string lastName);
+    string GenerateToken(Guid userId, string firstName, string lastName, string email, string role);
+    int GetExpirationMinutes();
 }

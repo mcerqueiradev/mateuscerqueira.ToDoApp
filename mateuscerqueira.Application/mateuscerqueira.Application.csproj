@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQ\ToDoItem\" />
+    <Folder Include="CQ\ToDoItem\Commands\" />
+    <Folder Include="CQ\ToDoItem\Queries\" />
   </ItemGroup>
 
 </Project>
