@@ -5,7 +5,6 @@ public sealed record Error(string Code, string Description)
     public static readonly Error None = new(string.Empty, string.Empty);
     public static readonly Error NotImplemented = new("NotImplemented", "Method not implemented");
     public static readonly Error EmptyDatabase = new("EmpytDatabase", "Not data found");
-    public static readonly Error ExistingUser = new("ExistingUser", "There is a user with this email");
     public static readonly Error InvalidInput = new("InvalidInput", "The input provided is invalid");
     public static readonly Error UnauthorizedAccess = new("UnauthorizedAccess", "User is not authorized to perform this action");
     public static readonly Error Timeout = new("Timeout", "The operation timed out");
@@ -22,5 +21,8 @@ public sealed record Error(string Code, string Description)
     public static readonly Error ExternalServiceError = new("ExternalServiceError", "An error occurred in an external service");
     public static readonly Error BadRequest = new("BadRequest", "The request was invalid or cannot be served");
     public static readonly Error Conflict = new("Conflict", "The request could not be completed due to a conflict");
-    public static readonly Error UserNotFound = new("UserNotFound", "The request could not find your credentials");
+    public static readonly Error UserNotFound = new("USER_NOT_FOUND", "User not found");
+    public static readonly Error InvalidPassword = new("INVALID_PASSWORD", "Senha atual inválida");
+    public static readonly Error ExistingUser = new("EXISTING_USER", "Já existe um usuário com este email");
+    public static readonly Error UserHasAssociatedTasks = new("USER_HAS_TASKS", "Cannot delete user with associated tasks");
 }

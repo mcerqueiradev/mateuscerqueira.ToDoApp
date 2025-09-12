@@ -56,6 +56,7 @@ public class User : AuditableEntity, IEntity<Guid>
     public void ChangePassword(PasswordHash newPassword)
     {
         Password = newPassword;
+        UpdatedAt = DateTime.UtcNow;
     }
 
     public void Deactivate()

@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="CQ\ToDoItem\" />
-    <Folder Include="CQ\Users\Queries\" />
   </ItemGroup>
 
 </Project>
