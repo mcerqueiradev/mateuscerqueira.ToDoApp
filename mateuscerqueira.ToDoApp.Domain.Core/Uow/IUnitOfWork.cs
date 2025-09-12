@@ -10,6 +10,7 @@ public interface IUnitOfWork
     public IUserResolverService UserResolverService { get; }
     public IDataProtectionService DataProtectionService { get; }
     public IUserRepository UserRepository { get; }
+    public IToDoItemRepository ToDoItemRepository { get; }
 
     bool Commit();
 

@@ -17,7 +17,6 @@ public class CreateUserCommandHandler(IUnitOfWork unitOfWork, PasswordService pa
             return Error.ExistingUser;
         }
 
-
         var name = new PersonalName(request.FirstName, request.LastName);
         var email = new Email(request.Email);
         var passwordHash = passwordService.CreatePasswordHash(request.Password);
