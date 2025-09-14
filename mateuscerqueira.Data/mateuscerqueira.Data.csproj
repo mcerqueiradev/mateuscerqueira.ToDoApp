@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\mateuscerqueira.ToDoApp.Domain.Core\mateuscerqueira.ToDoApp.Domain.Core.csproj" />
     <ProjectReference Include="..\mateuscerqueira.ToDoApp.Domain\mateuscerqueira.ToDoApp.Domain.csproj" />
-    <ProjectReference Include="..\mateuscerqueira.ToDoApp.Interfaces\mateuscerqueira.ToDoApp.Interfaces.csproj" />
     <ProjectReference Include="..\mateuscerqueira.ToDoApp.Security\mateuscerqueira.ToDoApp.Security.csproj" />
   </ItemGroup>
 

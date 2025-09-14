@@ -21,14 +21,21 @@ public class TokenService : ITokenService
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
     }
 
-    public string GenerateToken(Guid userId, string firstName, string lastName)
+    // Implementação com 5 parâmetros
+    public string GenerateToken(Guid userId, string firstName, string lastName, string email, string role)
     {
         var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.NameId, userId.ToString()),
-        new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-        new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
-    };
+        {
+            new Claim(JwtRegisteredClaimNames.NameId, userId.ToString()),
+            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
+            new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
+            new Claim(JwtRegisteredClaimNames.Email, email),
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+            new Claim(ClaimTypes.GivenName, firstName),
+            new Claim(ClaimTypes.Surname, lastName),
+            new Claim(ClaimTypes.Email, email),
+            new Claim(ClaimTypes.Role, role)
+        };
 
         var credentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -46,7 +53,7 @@ public class TokenService : ITokenService
         return tokenHandler.WriteToken(token);
     }
 
-    private int GetExpirationMinutes()
+    public int GetExpirationMinutes()
     {
         var expiration = _configuration["JwtSettings:ExpirationInMinutes"];
         if (int.TryParse(expiration, out int minutes) && minutes > 0)

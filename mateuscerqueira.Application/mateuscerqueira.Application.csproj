@@ -24,9 +24,4 @@
 	  <ProjectReference Include="..\mateuscerqueira.ToDoApp.Domain\mateuscerqueira.ToDoApp.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CQ\ToDoItem\" />
-    <Folder Include="CQ\Users\Queries\" />
-  </ItemGroup>
-
 </Project>

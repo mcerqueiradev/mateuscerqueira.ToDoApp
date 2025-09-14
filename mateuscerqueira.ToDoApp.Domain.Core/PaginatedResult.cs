@@ -5,7 +5,7 @@ public class PaginatedResult<T>
     public int PageIndex { get; }
     public int PageSize { get; }
     public int TotalCount { get; }
-    public int TotalPages => (int)Math.Ceiling((double)TotalCount / TotalPages);
+    public int TotalPages => (int)Math.Ceiling((double)TotalCount / PageSize);
     public bool HasPreviousPage => PageIndex > 1;
     public bool HasNextPage => PageIndex < TotalPages;
     public IEnumerable<T> Items { get; }

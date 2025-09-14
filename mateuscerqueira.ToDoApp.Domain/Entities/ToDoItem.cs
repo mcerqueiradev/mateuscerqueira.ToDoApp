@@ -74,4 +74,5 @@ public class ToDoItem : AuditableEntity, IEntity<Guid>
         UserId = null;
         UpdatedAt = DateTime.UtcNow;
     }
+
 }
