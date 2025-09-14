@@ -14,9 +14,12 @@ builder.Services.AddCors(options =>
         options.AddPolicy("AllowProduction",
             policy =>
             {
-                policy.WithOrigins("https://seu-frontend.vercel.app")
-                      .AllowAnyHeader()
-                      .AllowAnyMethod();
+                policy.WithOrigins(
+                    "https://mateuscerqueira-todo-app-front-end.vercel.app", // SEU FRONTEND
+                    "https://mateuscerqueira-todo-app-front-end.vercel.app/" // COM BARRA TAMBÉM
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
             });
     }
     else
@@ -52,17 +55,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Aplica a política de CORS conforme ambiente
-if (app.Environment.IsProduction())
-{
-    app.UseCors("AllowProduction");
-}
-else
-{
-    app.UseCors("AllowDev");
-}
+app.UseCors(app.Environment.IsProduction() ? "AllowProduction" : "AllowDev");
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
