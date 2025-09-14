@@ -2,12 +2,14 @@ using mateuscerqueira.ToDoApp.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Porta do Render
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
 builder.WebHost.UseUrls($"http://*:{port}");
 
-if (builder.Environment.IsProduction())
+// Configuração de CORS
+builder.Services.AddCors(options =>
 {
-    builder.Services.AddCors(options =>
+    if (builder.Environment.IsProduction())
     {
         options.AddPolicy("AllowProduction",
             policy =>
@@ -16,44 +18,31 @@ if (builder.Environment.IsProduction())
                       .AllowAnyHeader()
                       .AllowAnyMethod();
             });
-    });
-}
-else
-{
-    builder.Services.AddCors(options =>
+    }
+    else
     {
-        options.AddPolicy("AllowAll",
+        options.AddPolicy("AllowDev",
             policy =>
             {
-                policy.AllowAnyOrigin()
+                policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
                       .AllowAnyHeader()
-                      .AllowAnyMethod();
+                      .AllowAnyMethod()
+                      .AllowCredentials();
             });
-    });
-}
+    }
+});
 
+// Injeção de dependências
 builder.Services.AddIocServices(builder.Configuration);
 
+// Controllers e Swagger
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngularApp",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
-                  .AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowCredentials();
-        });
-});
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -62,7 +51,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowAngularApp");
+// Aplica a política de CORS conforme ambiente
+if (app.Environment.IsProduction())
+{
+    app.UseCors("AllowProduction");
+}
+else
+{
+    app.UseCors("AllowDev");
+}
 
 app.UseAuthorization();
 

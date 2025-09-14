@@ -11,6 +11,10 @@ namespace mateuscerqueira.Data.Configurations
         {
             builder.ToTable("Users");
 
+            builder.HasKey(u => u.Id);
+
+
+            // Configuração do Value Object Name
             builder.OwnsOne(u => u.Name, n =>
             {
                 n.Property(n => n.FirstName)
@@ -22,6 +26,7 @@ namespace mateuscerqueira.Data.Configurations
                     .HasMaxLength(50);
             });
 
+            // Configuração do Email
             builder.Property(u => u.Email)
                 .HasConversion(
                     e => e.Value,
@@ -30,21 +35,19 @@ namespace mateuscerqueira.Data.Configurations
 
             builder.HasIndex(u => u.Email).IsUnique();
 
+            // Configuração do PasswordHash
             builder.OwnsOne(u => u.Password, p =>
             {
-                p.Property(p => p.Hash)
+                p.Property(ph => ph.Hash)
                     .IsRequired()
-                    .HasConversion(
-                        h => Convert.ToBase64String(h),
-                        h => Convert.FromBase64String(h));
+                    .HasColumnType("bytea");
 
-                p.Property(p => p.Salt)
+                p.Property(ph => ph.Salt)
                     .IsRequired()
-                    .HasConversion(
-                        s => Convert.ToBase64String(s),
-                        s => Convert.FromBase64String(s));
+                    .HasColumnType("bytea");
 
-                p.Property(p => p.CreatedAt);
+                p.Property(ph => ph.CreatedAt)
+                    .IsRequired();
             });
         }
     }

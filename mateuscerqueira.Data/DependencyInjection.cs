@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace mateuscerqueira.Data;
 
 public static class DependencyInjection
@@ -21,7 +22,10 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-            options.UseSqlServer(configuration.GetConnectionString("ToDoAppCS"));
+            options.UseNpgsql(
+                configuration.GetConnectionString("ToDoAppCS"),
+                b => b.MigrationsAssembly("mateuscerqueira.Data")
+            );
         });
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
