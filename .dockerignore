@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/.dockerignore
+Dockerfile
+.dockerignore
+.git/
+.gitignore
+README.md
+*.log
+*.tmp
+.nuget/
+packages/
+.vscode/
+.idea/
+**/appsettings.Development.json
