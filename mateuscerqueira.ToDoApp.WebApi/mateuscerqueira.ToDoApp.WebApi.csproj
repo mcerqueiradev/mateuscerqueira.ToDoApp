@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\mateuscerqueira.ToDoApp.IoC\mateuscerqueira.ToDoApp.IoC.csproj" />
+	  <ProjectReference Include="..\mateuscerqueira.Data\mateuscerqueira.Data.csproj" />
   </ItemGroup>
 
 </Project>

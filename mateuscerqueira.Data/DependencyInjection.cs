@@ -24,7 +24,7 @@ public static class DependencyInjection
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseNpgsql(
                 configuration.GetConnectionString("ToDoAppCS"),
-                b => b.MigrationsAssembly("mateuscerqueira.TodoApp.Data")
+                b => b.MigrationsAssembly("mateuscerqueira.Data")
             );
         });
 
