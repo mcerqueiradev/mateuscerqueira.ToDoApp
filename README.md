@@ -1,55 +1,39 @@
-ToDo App - Sistema de Gerenciamento de Tarefas
-Uma aplicação  de gerenciamento de tarefas desenvolvida em .NET com arquitetura limpa e boas práticas de desenvolvimento.
+ToDoApp - Sistema de Gerenciamento de Tarefas
+🚀 Como rodar o Backend (API)
 
-Funcionalidades
-Cadastro e autenticação de usuários
-
-Criação e organização de tarefas
-
-Categorização e priorização de atividades
-
-Sistema de autenticação e autorização JWT
-
-Dashboard com overview de produtividade
-
-Interface responsiva e intuitiva
-
-Tecnologias
-Backend: .NET 8, Entity Framework Core, C#
-
-Autenticação: JWT, ASP.NET Core Identity
-
-Banco de Dados: SQL Server (com suporte a outros providers)
-
-Arquitetura: Clean Architecture, Domain-Driven Design
-
-
-Estrutura do Projeto
+Pré-requisitos
 ```
-ToDoApp/
-├── Domain/          # Entidades e regras de negócio
-├── Application/     # Casos de uso e serviços
-├── Infrastructure/  # Implementações concretas
-├── WebAPI/         # Controladores e endpoints
-└── Tests/          # Testes unitários e de integração
+.NET 9.0 SDK
+
+PostgreSQL 15+
+
+Docker (opcional)
 ```
 
-Como Executar
-
+1. Clone o repositório
 ```
-# Clone o repositório
-git clone https://github.com/seu-usuario/todoapp.git
-
-# Configure o banco de dados
-dotnet ef database update
-
-# Execute a aplicação
-dotnet run --project WebAPI
+bash
+git clone https://github.com/mcerqueiradev/mateuscerqueira.ToDoApp.git
+cd mateuscerqueira.ToDoApp/backend
 ```
 
-Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+2. Configure o ambiente
+```
+bash
+# Instale as dependências
+dotnet restore
 
-Contato
-Mateus Cerqueira
-Email: mateusjesus2309@gmail.com
+# Build do projeto
+dotnet build
+```
+
+3. Execute a API
+```
+bash
+# Desenvolvimento
+dotnet run --project mateuscerqueira.ToDoApp.WebApi
+```
+
+# Ou com watch
+```dotnet watch run --project mateuscerqueira.ToDoApp.WebApi```
+API disponível em: http://localhost:5000
